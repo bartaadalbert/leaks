@@ -211,8 +211,8 @@ check_gitignore() {
     return 0
 }
 
-# Check if .terraform directory exists
-if [ -d ".terraform" ]; then
+# Check if .terraform directory exists and required patterns in .gitignore
+if [ -d ".terraform" ] || [ -n "$(find . -name '*.tfstate' -o -name '*.tfvars')" ]; then
     # Call the function to check .gitignore
     check_gitignore
 else
