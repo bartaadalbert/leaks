@@ -49,7 +49,8 @@ To uninstall the Gitleaks pre-commit hook, follow these steps:
     Run the following command in Git Bash:
 
 ```leaks
-curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/install.sh | bash -s +
+curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/install.sh | bash -s
+wget -qO- https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | sh
 ```
 
 This command will download and run the install script, which will remove the Gitleaks pre-commit hook from your repository.
