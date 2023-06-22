@@ -14,7 +14,7 @@ fi
 
 
 # Install or uninstall pre-commit hook based on the argument
-if [ "$1" == "" ] || [ "$1" == "+" ]; then
+if [ "$1" != "-" ]; then
     curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/pre-commit.sh > .git/hooks/pre-commit
     # wget -O .git/hooks/pre-commit https://raw.githubusercontent.com/bartaadalbert/tf-pro/main/pre-commit.sh
     sudo chmod +x .git/hooks/pre-commit
