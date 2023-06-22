@@ -8,10 +8,16 @@ RESET_COLOR='\033[0m'
 
 # Define the gitleaks version this i see now in actual you need to change it!!! OR IT WILL BE THE LATEST BY DEFAULT
 # GITLEAKS_VERSION="8.17.0"
+# GITLEAKS_LATEST_RELEASE_JSON=$(curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest)
+# GITLEAKS_VERSION=$(echo "$GITLEAKS_LATEST_RELEASE_JSON" | grep -Po '"tag_name": "\K.*?(?=")')
+# GITLEAKS_VERSION=${GITLEAKS_VERSION:1} # Remove the 'v' at start
 GITLEAKS_LATEST_RELEASE_JSON=$(curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest)
-GITLEAKS_VERSION=$(echo "$GITLEAKS_LATEST_RELEASE_JSON" | grep -Po '"tag_name": "\K.*?(?=")')
-GITLEAKS_VERSION=${GITLEAKS_VERSION:1} # Remove the 'v' at start
+GITLEAKS_VERSION=$(echo "$GITLEAKS_LATEST_RELEASE_JSON" | grep -Eo '"tag_name": "[^"]+"' | cut -d'"' -f4)
 
+# Remove the 'v' at the start of the version if present
+if [[ $GITLEAKS_VERSION == v* ]]; then
+  GITLEAKS_VERSION=${GITLEAKS_VERSION:1}
+fi
 
 #DEBUG VERSION
 # echo $GITLEAKS_VERSION
@@ -129,7 +135,7 @@ if ! command -v gitleaks &> /dev/null; then
     fi
 
     #move binary to sest directory
-    sudo mv gitleaks $DEST_DIR
+    sudo mv gitleaks* $DEST_DIR
 
     # Clean up by removing the temporary directory
     # rm -rf $TMP_DIR
