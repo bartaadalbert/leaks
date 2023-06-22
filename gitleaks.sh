@@ -14,12 +14,12 @@ fi
 
 
 # Install or uninstall pre-commit hook based on the argument
-if [ "$1" != "-" ]; then
+if [ "$1" == "in" ]; then
     curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/pre-commit.sh > .git/hooks/pre-commit
     # wget -O .git/hooks/pre-commit https://raw.githubusercontent.com/bartaadalbert/tf-pro/main/pre-commit.sh
     sudo chmod +x .git/hooks/pre-commit
     echo -e "${GREEN}Pre-commit hook installed successfully.${RESET_COLOR}"
-elif [ "$1" == "-" ]; then
+elif [ "$1" == "rm" ]; then
     sudo rm -f .git/hooks/pre-commit
     echo -e "${GREEN}Pre-commit hook uninstalled successfully.${RESET_COLOR}"
 else
