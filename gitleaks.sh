@@ -7,7 +7,7 @@ YELLOW='\033[1;33m'
 RESET_COLOR='\033[0m'
 
 # Check if the script is being run by administrator user
-if [ "$(id -u)" != "0" ]; then
+if [ "$(id -u)" != "0" ] && [ "$(uname -o)" != "Msys" ]; then
     echo -e "${RED}This script must be run as administrator or with elevated privileges.${RESET_COLOR}" 1>&2
     exit 1
 fi
