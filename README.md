@@ -67,6 +67,18 @@ If Gitleaks is enabled, it will check the entire git history for leaks and scan 
 
 If Gitleaks is disabled, it will skip the checks and allow the commit to proceed.
 
+## Enabling or Disabling Gitleaks
+
+You can enable or disable the Gitleaks pre-commit hook by using `git config`:
+
+- **To enable Gitleaks:**
+git config hooks.gitleaks true
+- **To disable Gitleaks:**
+git config hooks.gitleaks false
+
+By default, Gitleaks is enabled. You can use these commands to control whether Gitleaks should be applied before each commit.
+
+
 
 
 # License
