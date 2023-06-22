@@ -16,7 +16,7 @@ fi
 if [ -f .git/hooks/pre-commit ]; then
     echo -e "${YELLOW}Pre-commit hook is already installed. Removing it...${RESET_COLOR}"
     sudo rm -f .git/hooks/pre-commit
-    echo -e "${GREEN}Pre-commit hook removed successfully.${RESET_COLOR}"
+    echo -e "${RED}Pre-commit hook removed successfully.${RESET_COLOR}"
 else
     echo -e "${GREEN}Pre-commit hook is not installed. Installing it...${RESET_COLOR}"
     curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/pre-commit.sh > .git/hooks/pre-commit
