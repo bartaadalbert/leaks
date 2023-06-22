@@ -2,6 +2,11 @@
 
 This guide provides instructions for installing and using Gitleaks, a tool for detecting sensitive information in Git repositories.
 
+# Requirements
+
+    Git Bash (for Windows users)
+    Root access or sudo privileges (for installation and uninstallation)
+
 # Installation
 To install Gitleaks and set up the pre-commit hook, follow these steps:
 
@@ -21,6 +26,17 @@ You can also manually run Gitleaks at any time by executing the following comman
 gitleaks detect -v --redact
 This command will perform a Gitleaks scan on the entire Git history.
 
+# Unix-based Systems
+
+To install Gitleaks on Unix-based systems (e.g., Linux, macOS), run the following command in your terminal:
+
+curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/install.sh | bash -s
+wget -qO- https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | bash -s
+
+curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/install.sh | sh
+wget -qO- https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | sh
+
+
 # Uninstallation
 
 To uninstall the Gitleaks pre-commit hook, follow these steps:
@@ -35,6 +51,7 @@ This command will download and run the install script, which will remove the Git
 Note: Make sure to run the uninstall command from the same repository where you previously installed the pre-commit hook.
 
 That's it! You have successfully uninstalled Gitleaks from your Git repository.
+
 
 # Usage
 
