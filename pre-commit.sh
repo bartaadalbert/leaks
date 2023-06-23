@@ -171,7 +171,7 @@ if [[ "$gitleaks_hook" == "true" ]]; then
     if [ $? -eq 1 ]
     then
         echo -e "${RED}Gitleaks has detected sensitive information in your git history, please clean up your history before committing!${RESET_COLOR}"
-        # exit 1
+        exit 1
     fi
 
     # Check staged changes for leaks

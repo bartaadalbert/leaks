@@ -67,6 +67,26 @@ If Gitleaks is enabled, it will check the entire git history for leaks and scan 
 
 If Gitleaks is disabled, it will skip the checks and allow the commit to proceed.
 
+Certainly! When you write the README file for your script, you can include the instructions for macOS users to allow the execution of the gitleaks binary. Here's how you could write that section:
+
+# For macOS Users
+
+After installing the gitleaks binary, you may encounter a security warning that prevents you from running it because it's from an unidentified developer. To allow the execution of gitleaks, follow these steps:
+
+    Try to run gitleaks once from the terminal. You will likely see a message that says the app cannot be opened because it is from an unidentified developer.
+
+    Open System Preferences. You can do this by clicking on the Apple icon in the top-left corner of your screen and selecting “System Preferences.”
+
+    Go to “Security & Privacy”.
+
+    Switch to the “General” tab.
+
+    At the bottom of the “General” tab, you should see a message like “‘gitleaks’ was blocked from use because it is not from an identified developer.”
+
+    Click the “Open Anyway” button. This will create an exception for gitleaks and you will be able to run it in the future without any issues.
+
+Please note that this procedure should be done with caution and only for software that you trust.
+
 ## Enabling or Disabling Gitleaks
 
 You can enable or disable the Gitleaks pre-commit hook by using `git config`:
