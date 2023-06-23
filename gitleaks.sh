@@ -20,7 +20,7 @@ if [ -f .git/hooks/pre-commit ]; then
 else
     echo -e "${GREEN}Pre-commit hook is not installed. Installing it...${RESET_COLOR}"
     curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/pre-commit.sh > .git/hooks/pre-commit
-    # wget -O .git/hooks/pre-commit https://raw.githubusercontent.com/bartaadalbert/tf-pro/main/pre-commit.sh
+    # wget -O .git/hooks/pre-commit https://raw.githubusercontent.com/bartaadalbert/leaks/master/pre-commit.sh
     chmod +x .git/hooks/pre-commit
     echo -e "${GREEN}Pre-commit hook installed successfully.${RESET_COLOR}"
 fi

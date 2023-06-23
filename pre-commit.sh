@@ -135,7 +135,8 @@ if ! command -v gitleaks &> /dev/null; then
     fi
 
     #move binary to sest directory
-    sudo mv gitleaks* $DEST_DIR
+    # sudo mv gitleaks* $DEST_DIR
+    mv gitleaks* $DEST_DIR
 
     # Clean up by removing the temporary directory
     # rm -rf $TMP_DIR
@@ -192,7 +193,7 @@ fi
 
 
 check_gitignore() {
-    local gitignore_file=".gitignore"
+    local gitignore_file="../../.gitignore"
     local patterns=("terraform.tfstate" ".terraform" "*.tfvars")
     local all_patterns_present=true
 
