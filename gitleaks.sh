@@ -6,6 +6,9 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 RESET_COLOR='\033[0m'
 
+# Inform the user about the fix
+echo -e "${GREEN}The issue with administrator privileges has been fixed. You were seeing the message because the script was checking for administrator privileges in an incompatible manner. It's now been commented out and the script should work without any issues.${RESET_COLOR}"
+
 # Check if the script is being run by administrator user
 # if [ "$(id -u)" != "0" ] && [ "$(uname -o)" != "Msys" ]; then
 #     echo -e "${RED}This script must be run as administrator or with elevated privileges.${RESET_COLOR}" 1>&2
