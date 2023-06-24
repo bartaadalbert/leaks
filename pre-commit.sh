@@ -62,9 +62,10 @@ SUPPORTED_ARCHITECTURES_windows=("x86_64:amd64" "arm64:arm64")
 
 #GET the archname from supported arch indexed arrays (key:value)
 get_arch_name() {
-    local -n arr=$1
+    local archs_var="SUPPORTED_ARCHITECTURES_$1"
     local arch=$2
-    for item in "${arr[@]}"; do
+    eval "local archs=(\"\${${archs_var}[@]}\")"
+    for item in "${archs[@]}"; do
         IFS=":" read -r key value <<< "$item"
         if [[ "$key" == "$arch" ]]; then
             echo "$value"
