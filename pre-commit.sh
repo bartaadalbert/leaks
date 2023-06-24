@@ -42,20 +42,36 @@ fi
 # Detect arch
 ARCH=$(uname -m)
 
-declare -A SUPPORTED_ARCHITECTURES_linux=(
-    ["x86_64"]="x64" 
-    ["aarch64"]="arm64" 
-    ["armv6"]="armv6" 
-    ["armv7"]="armv7"
-)
-declare -A SUPPORTED_ARCHITECTURES_darwin=(
-    ["x86_64"]="x64" 
-    ["arm64"]="arm64"
-)
-declare -A SUPPORTED_ARCHITECTURES_windows=(
-    ["x86_64"]="amd64" 
-    ["arm64"]="arm64"
-)
+# declare -A SUPPORTED_ARCHITECTURES_linux=(
+#     ["x86_64"]="x64" 
+#     ["aarch64"]="arm64" 
+#     ["armv6"]="armv6" 
+#     ["armv7"]="armv7"
+# )
+# declare -A SUPPORTED_ARCHITECTURES_darwin=(
+#     ["x86_64"]="x64" 
+#     ["arm64"]="arm64"
+# )
+# declare -A SUPPORTED_ARCHITECTURES_windows=(
+#     ["x86_64"]="amd64" 
+#     ["arm64"]="arm64"
+# )
+SUPPORTED_ARCHITECTURES_linux=("x86_64:x64" "aarch64:arm64" "armv6:armv6" "armv7:armv7")
+SUPPORTED_ARCHITECTURES_darwin=("x86_64:x64" "arm64:arm64")
+SUPPORTED_ARCHITECTURES_windows=("x86_64:amd64" "arm64:arm64")
+
+#GET the archname from supported arch associative arrays (key:value)
+get_arch_name() {
+    local -n arr=$1
+    local arch=$2
+    for item in "${arr[@]}"; do
+        IFS=":" read -r key value <<< "$item"
+        if [[ "$key" == "$arch" ]]; then
+            echo "$value"
+            return
+        fi
+    done
+}
 
 # Check if gitleaks is installed
 if ! command -v gitleaks &> /dev/null; then
@@ -63,8 +79,10 @@ if ! command -v gitleaks &> /dev/null; then
     ARCH_NAME=""
 
     if [[ " ${SUPPORTED_OS[@]} " =~ " ${OS} " ]]; then
-        archs_var="SUPPORTED_ARCHITECTURES_${OS}[$ARCH]"
-        ARCH_NAME=${!archs_var}
+        # archs_var="SUPPORTED_ARCHITECTURES_${OS}[$ARCH]"
+        # ARCH_NAME=${!archs_var}
+        arch_name_var="SUPPORTED_ARCHITECTURES_${OS}"
+        ARCH_NAME=$(get_arch_name "$arch_name_var" "$ARCH")
         if [ -n "$ARCH_NAME" ]; then
             EXTENSION="tar.gz"
             if [[ "$OS" == "windows" ]]; then
