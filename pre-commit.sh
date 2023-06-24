@@ -60,7 +60,7 @@ SUPPORTED_ARCHITECTURES_linux=("x86_64:x64" "aarch64:arm64" "armv6:armv6" "armv7
 SUPPORTED_ARCHITECTURES_darwin=("x86_64:x64" "arm64:arm64")
 SUPPORTED_ARCHITECTURES_windows=("x86_64:amd64" "arm64:arm64")
 
-#GET the archname from supported arch associative arrays (key:value)
+#GET the archname from supported arch indexed arrays (key:value)
 get_arch_name() {
     local -n arr=$1
     local arch=$2
@@ -135,6 +135,9 @@ if ! command -v gitleaks &> /dev/null; then
         exit 1
     fi
 
+    # WE need to clean our temp dir from archive
+    rm -f *.tar.gz
+    rm -f *.zip
     # rm -rf gitleaks_${GITLEAKS_VERSION}_${OS}_${ARCH_NAME}*
 
     # Move the gitleaks binary to the appropriate location
@@ -156,8 +159,21 @@ if ! command -v gitleaks &> /dev/null; then
     # sudo mv gitleaks* $DEST_DIR
     mv gitleaks* $DEST_DIR
 
+    # Check if the move was successful
+    if [ $? -ne 0 ]; then
+        # If the move was not successful, try using sudo
+        echo -e "${YELLOW}Attempting to move gitleaks binary with sudo...${RESET_COLOR}"
+        sudo mv gitleaks* $DEST_DIR
+        
+        # Check if the sudo move was successful
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}Error moving Gitleaks to destination directory${RESET_COLOR}"
+            exit 1
+        fi
+    fi
+
     # Clean up by removing the temporary directory
-    # rm -rf $TMP_DIR
+    rm -rf $TMP_DIR
 
     #BY DEFULT pre-commit enabled with true text
     git config hooks.gitleaks true

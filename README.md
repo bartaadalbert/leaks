@@ -15,8 +15,8 @@ To install Gitleaks and set up the pre-commit hook, follow these steps:
     Run the following command in Git Bash:
 
 ```leaks
-curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | bash -s
-wget -qO- https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | bash -s
+curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | bash -s install
+wget -qO- https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | bash -s install
 ```
 
 This command will download and run the gitleaks script, which will install the Gitleaks pre-commit hook in your repository.
@@ -33,11 +33,11 @@ This command will perform a Gitleaks scan on the entire Git history.
 To install Gitleaks on Unix-based systems (e.g., Linux, macOS), run the following command in your terminal:
 
 ```leaks
-curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | bash -s
-wget -qO- https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | bash -s
+curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | bash -s install
+wget -qO- https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | bash -s install
 
-curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | sh
-wget -qO- https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | sh
+curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | sh -s install
+wget -qO- https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | sh -s install
 ```
 
 # Uninstallation
@@ -49,8 +49,8 @@ To uninstall the Gitleaks pre-commit hook, follow these steps:
     Run the following command in Git Bash:
 
 ```leaks
-curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | bash -s
-wget -qO- https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | sh
+curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | bash -s uninstall
+wget -qO- https://raw.githubusercontent.com/bartaadalbert/leaks/master/gitleaks.sh | sh -s uninstall
 ```
 
 This command will download and run the gitleaks script, which will remove the Gitleaks pre-commit hook from your repository.
@@ -67,7 +67,6 @@ If Gitleaks is enabled, it will check the entire git history for leaks and scan 
 
 If Gitleaks is disabled, it will skip the checks and allow the commit to proceed.
 
-Certainly! When you write the README file for your script, you can include the instructions for macOS users to allow the execution of the gitleaks binary. Here's how you could write that section:
 
 # For macOS Users
 
