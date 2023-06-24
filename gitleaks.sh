@@ -15,27 +15,38 @@ echo -e "${GREEN}The issue with administrator privileges has been fixed. You wer
 #     exit 1
 # fi
 
+#!/bin/bash
+
+# ANSI escape codes for colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RESET_COLOR='\033[0m'
+
+# The first argument passed to the script
+action=${1:-install}
+
 # Check if the pre-commit hook is already installed
-if [ -f .git/hooks/pre-commit ]; then
-    echo -e "${YELLOW}Pre-commit hook is already installed.${RESET_COLOR}"
-    echo -e "${YELLOW}Do you want to uninstall it? (yes/no)${RESET_COLOR}"
-    read -r user_choice
-    if [ "$user_choice" = "yes" ] || [ "$user_choice" = "y" ]; then
+if [ "$action" = "uninstall" ]; then
+    if [ -f .git/hooks/pre-commit ]; then
+        echo -e "${YELLOW}Pre-commit hook is already installed. Removing it...${RESET_COLOR}"
         rm -f .git/hooks/pre-commit
         echo -e "${RED}Pre-commit hook removed successfully.${RESET_COLOR}"
     else
-        echo -e "${GREEN}Uninstallation canceled.${RESET_COLOR}"
+        echo -e "${RED}No pre-commit hook found to uninstall.${RESET_COLOR}"
     fi
-else
-    echo -e "${GREEN}Pre-commit hook is not installed. Do you want to install it? (yes/no)${RESET_COLOR}"
-    read -r user_choice
-    if [ "$user_choice" = "yes" ] || [ "$user_choice" = "y" ]; then
+elif [ "$action" = "install" ]; then
+    if [ ! -f .git/hooks/pre-commit ]; then
+        echo -e "${GREEN}Pre-commit hook is not installed. Installing it...${RESET_COLOR}"
         curl -sSfL https://raw.githubusercontent.com/bartaadalbert/leaks/master/pre-commit.sh > .git/hooks/pre-commit
         chmod +x .git/hooks/pre-commit
         echo -e "${GREEN}Pre-commit hook installed successfully.${RESET_COLOR}"
     else
-        echo -e "${YELLOW}Installation canceled.${RESET_COLOR}"
+        echo -e "${YELLOW}Pre-commit hook is already installed.${RESET_COLOR}"
     fi
+else
+    echo -e "${RED}Invalid action. Please use 'install' or 'uninstall'.${RESET_COLOR}"
 fi
+
 
 
