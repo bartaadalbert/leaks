@@ -82,8 +82,8 @@ if ! command -v gitleaks &> /dev/null; then
     if [[ " ${SUPPORTED_OS[@]} " =~ " ${OS} " ]]; then
         # archs_var="SUPPORTED_ARCHITECTURES_${OS}[$ARCH]"
         # ARCH_NAME=${!archs_var}
-        arch_name_var="SUPPORTED_ARCHITECTURES_${OS}"
-        ARCH_NAME=$(get_arch_name "$arch_name_var" "$ARCH")
+        # arch_name_var="SUPPORTED_ARCHITECTURES_${OS}"
+        ARCH_NAME=$(get_arch_name "$OS" "$ARCH")
         if [ -n "$ARCH_NAME" ]; then
             EXTENSION="tar.gz"
             if [[ "$OS" == "windows" ]]; then
